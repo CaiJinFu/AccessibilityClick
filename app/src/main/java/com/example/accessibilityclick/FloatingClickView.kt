@@ -123,6 +123,7 @@ class FloatingClickView(private val mContext: Context) : FrameLayout(mContext) {
   }
 
   fun remove() {
+    ivIcon?.setImageResource(R.drawable.ic_auto_click_icon_gray_24)
     mWindowManager.removeView(mView)
   }
 
