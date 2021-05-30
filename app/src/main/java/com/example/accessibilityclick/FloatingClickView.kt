@@ -83,12 +83,12 @@ class FloatingClickView(private val mContext: Context) : FrameLayout(mContext) {
           intent.putExtra(AutoClickService.FLAG_ACTION, AutoClickService.ACTION_PLAY)
           intent.putExtra("pointX", (location[0] - 1).toFloat())
           intent.putExtra("pointY", (location[1] - 1).toFloat())
-          ivIcon?.setImageResource(R.drawable.like)
+          ivIcon?.setImageResource(R.drawable.ic_auto_click_icon_green_24)
         }
         STATE_CLICKING -> {
           mCurrentState = STATE_NORMAL
           intent.putExtra(AutoClickService.FLAG_ACTION, AutoClickService.ACTION_STOP)
-          ivIcon?.setImageResource(R.drawable.hot)
+          ivIcon?.setImageResource(R.drawable.ic_auto_click_icon_gray_24)
         }
       }
       context.startService(intent)

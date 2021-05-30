@@ -7,5 +7,5 @@
     android:id="@+id/iv_icon"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:src="@drawable/like" />
+    android:src="@drawable/ic_auto_click_icon_gray_24" />
 </FrameLayout>
