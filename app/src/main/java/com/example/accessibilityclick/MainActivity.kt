@@ -54,6 +54,7 @@ class MainActivity : AppCompatActivity() {
     initNotification()
     initListener()
     Log.i("TAG", "onCreate: 22222")
+    Log.i("TAG", "onCreate: 444")
   }
 
   private fun initListener() {
