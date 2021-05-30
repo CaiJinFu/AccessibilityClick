@@ -53,6 +53,7 @@ class MainActivity : AppCompatActivity() {
     setContentView(R.layout.activity_main)
     initNotification()
     initListener()
+    Log.i("TAG", "onCreate: 22222")
   }
 
   private fun initListener() {
