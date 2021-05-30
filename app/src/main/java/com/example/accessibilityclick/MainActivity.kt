@@ -57,7 +57,17 @@ class MainActivity : AppCompatActivity() {
 
   private fun initListener() {
     btn_accessibility.setOnClickListener {
-      checkAccessibility()
+
+      // 判断服务是否开启
+      if (!OpenAccessibilitySettingHelper.isAccessibilitySettingsOn(
+          this, AutoClickService::class.java.getName()
+        )
+      ) { // 跳转到开启页面
+        OpenAccessibilitySettingHelper.jumpToSettingPage(this)
+      } else {
+        Toast.makeText(this, "服务已开启", Toast.LENGTH_SHORT).show()
+      }
+
     }
 
     btn_floating_window.setOnClickListener {
@@ -82,14 +92,6 @@ class MainActivity : AppCompatActivity() {
       Log.d(TAG, "btn_test on click")
     }
 
-  }
-
-  /**
-   * 跳转设置开启无障碍
-   */
-  private fun checkAccessibility() {
-    val intent = Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS)
-    startActivity(intent)
   }
 
   /**
@@ -154,6 +156,7 @@ class MainActivity : AppCompatActivity() {
       imm.hideSoftInputFromWindow(currentFocus!!.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
     }
   }
+
 }
 
 

@@ -1,6 +1,6 @@
-package com.example.accessibilityclick;
+package com.example.accessibilityclick
 
-import android.app.Application;
+import android.app.Application
 
 /**
  * @name AccessibilityClick
@@ -11,13 +11,14 @@ import android.app.Application;
  * @change
  * @chang time
  */
-public class App extends Application {
+class App : Application() {
 
-  public static Application mApplication;
+  override fun onCreate() {
+    super.onCreate()
+    mApplication = this
+  }
 
-  @Override
-  public void onCreate() {
-    super.onCreate();
-    mApplication = this;
+  companion object {
+    lateinit var mApplication: Application
   }
 }
