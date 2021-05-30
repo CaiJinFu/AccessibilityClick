@@ -114,9 +114,11 @@ class FloatingClickView(private val mContext: Context) : FrameLayout(mContext) {
       if (mView.isAttachedToWindow) {
         mWindowManager.removeView(mView)
       }
-      mWindowManager.addView(mView, this)
-//      val view = LayoutInflater.from(context).inflate(R.layout.view_floating_click2, null)
-//      mWindowManager.addView(view, this)
+      mWindowManager.addView(
+        mView,
+        this
+      ) //      val view = LayoutInflater.from(context).inflate(R.layout.view_floating_click2, null)
+      //      mWindowManager.addView(view, this)
     }
   }
 

@@ -11,7 +11,6 @@ import android.app.Application;
  * @change
  * @chang time
  */
-
 public class App extends Application {
 
   public static Application mApplication;
@@ -21,5 +20,4 @@ public class App extends Application {
     super.onCreate();
     mApplication = this;
   }
-
 }

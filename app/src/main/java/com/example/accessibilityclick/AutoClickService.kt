@@ -16,12 +16,17 @@ import android.app.Notification
 import android.content.Intent
 import android.graphics.Path
 import android.os.Build
+import android.os.Build.VERSION_CODES
 import android.util.Log
 import android.view.accessibility.AccessibilityEvent
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import com.example.accessibilityclick.MainActivity.NotificationConstants
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class AutoClickService : AccessibilityService() {
 
@@ -60,7 +65,11 @@ class AutoClickService : AccessibilityService() {
     mFloatingView = FloatingClickView(App.mApplication)
   }
 
-  override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+  @RequiresApi(VERSION_CODES.N) override fun onStartCommand(
+    intent: Intent?,
+    flags: Int,
+    startId: Int
+  ): Int {
     Log.d(TAG, "onStartCommand " + intent?.extras)
     intent?.apply {
       val action = getStringExtra(FLAG_ACTION)
@@ -95,12 +104,9 @@ class AutoClickService : AccessibilityService() {
 
   private fun startForegroundNotification() {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-      val notificationBuilder =
-        NotificationCompat.Builder(this, NotificationConstants.CHANNEL_ID)
-      val notification = notificationBuilder.setOngoing(true)
-        .setSmallIcon(R.mipmap.ic_launcher)
-        .setCategory(Notification.CATEGORY_SERVICE)
-        .build()
+      val notificationBuilder = NotificationCompat.Builder(this, NotificationConstants.CHANNEL_ID)
+      val notification = notificationBuilder.setOngoing(true).setSmallIcon(R.mipmap.ic_launcher)
+        .setCategory(Notification.CATEGORY_SERVICE).build()
       startForeground(-1, notification)
 
     } else {
@@ -108,8 +114,7 @@ class AutoClickService : AccessibilityService() {
     }
   }
 
-  @RequiresApi(Build.VERSION_CODES.N)
-  private fun autoClickView(x: Float, y: Float) {
+  @RequiresApi(Build.VERSION_CODES.N) private fun autoClickView(x: Float, y: Float) {
 
     mainScope?.launch {
       while (true) {
@@ -118,11 +123,9 @@ class AutoClickService : AccessibilityService() {
         val path = Path()
         path.moveTo(x, y)
         val gestureDescription = GestureDescription.Builder()
-          .addStroke(GestureDescription.StrokeDescription(path, 100L, 100L))
-          .build()
+          .addStroke(GestureDescription.StrokeDescription(path, 100L, 100L)).build()
         dispatchGesture(
-          gestureDescription,
-          object : AccessibilityService.GestureResultCallback() {
+          gestureDescription, object : AccessibilityService.GestureResultCallback() {
             override fun onCompleted(gestureDescription: GestureDescription?) {
               super.onCompleted(gestureDescription)
               Log.d(TAG, "自动点击完成")
@@ -132,8 +135,7 @@ class AutoClickService : AccessibilityService() {
               super.onCancelled(gestureDescription)
               Log.d(TAG, "自动点击取消")
             }
-          },
-          null
+          }, null
         )
       }
     }

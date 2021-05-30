@@ -17,10 +17,10 @@ import android.view.WindowManager
 class FloatingManager private constructor(context: Context) {
 
   //获得WindowManager对象
-  private var mWindowManager: WindowManager = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
+  private var mWindowManager: WindowManager =
+    context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
 
   companion object : SingletonHolder<FloatingManager, Context>(::FloatingManager)
-
 
   /**
    * 添加悬浮窗
