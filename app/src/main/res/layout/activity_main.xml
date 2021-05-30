@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent">
+
+  <androidx.appcompat.widget.AppCompatTextView
+    android:id="@+id/tv_message"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="50dp"
+    android:layout_marginTop="20dp"
+    android:text="先打开无障碍权限 和 悬浮窗顶层权限\n点击位置在图标左上角xy偏移一个px\n程序将会在延迟一个间隔后开始执行"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent" />
+
+  <com.google.android.material.button.MaterialButton
+    android:id="@+id/btn_accessibility"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="50dp"
+    android:layout_marginTop="20dp"
+    android:text="无障碍选项"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/tv_message" />
+
+  <com.google.android.material.button.MaterialButton
+    android:id="@+id/btn_floating_window"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="20dp"
+    android:text="悬浮窗选项"
+    app:layout_constraintStart_toEndOf="@id/btn_accessibility"
+    app:layout_constraintTop_toTopOf="@id/btn_accessibility" />
+
+  <androidx.appcompat.widget.AppCompatTextView
+    android:id="@+id/tv_unit"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="50dp"
+    android:text="ms"
+    android:textSize="24sp"
+    app:layout_constraintBottom_toBottomOf="@id/et_interval"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toTopOf="@id/et_interval" />
+
+  <androidx.appcompat.widget.AppCompatEditText
+    android:id="@+id/et_interval"
+    android:layout_width="0dp"
+    android:layout_height="48dp"
+    android:layout_marginStart="50dp"
+    android:layout_marginTop="50dp"
+    android:layout_marginEnd="10dp"
+    android:hint="点击的间隔(建议大于100)(毫秒)"
+    android:inputType="number"
+    android:textColor="#FF0000"
+    android:textSize="14sp"
+    app:layout_constraintEnd_toStartOf="@id/tv_unit"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/btn_accessibility" />
+
+  <com.google.android.material.button.MaterialButton
+    android:id="@+id/btn_show_window"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="50dp"
+    android:text="打开悬浮视图"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/et_interval" />
+
+  <com.google.android.material.button.MaterialButton
+    android:id="@+id/btn_close_window"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:text="关闭悬浮视图"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/btn_show_window" />
+
+  <com.google.android.material.button.MaterialButton
+    android:id="@+id/btn_test"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="100dp"
+    android:text="测试点击按钮"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
