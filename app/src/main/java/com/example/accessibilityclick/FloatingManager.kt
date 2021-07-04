@@ -12,7 +12,9 @@ import android.view.WindowManager
  */
 class FloatingManager private constructor(context: Context) {
 
-  //获得WindowManager对象
+  /**
+   * 获得WindowManager对象
+   */
   private var mWindowManager: WindowManager =
     context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
 
@@ -20,9 +22,10 @@ class FloatingManager private constructor(context: Context) {
 
   /**
    * 添加悬浮窗
-   * @param view
-   * @param params
-   * @return
+   *
+   * @param view 添加的view
+   * @param params WindowManager
+   * @return 添加是否成功，true：成功，false：失败
    */
   fun addView(view: View, params: WindowManager.LayoutParams): Boolean {
     try {
@@ -31,15 +34,14 @@ class FloatingManager private constructor(context: Context) {
     } catch (e: Exception) {
       e.printStackTrace()
     }
-
     return false
   }
 
   /**
    * 移除悬浮窗
    *
-   * @param view
-   * @return
+   * @param view 添加的view
+   * @return 移除是否成功，true：成功，false：失败
    */
   fun removeView(view: View): Boolean {
     try {
@@ -48,16 +50,15 @@ class FloatingManager private constructor(context: Context) {
     } catch (e: Exception) {
       e.printStackTrace()
     }
-
     return false
   }
 
   /**
    * 更新悬浮窗参数
    *
-   * @param view
-   * @param params
-   * @return
+   * @param view 添加的view
+   * @param params WindowManager
+   * @return 添加是否成功，true：成功，false：失败
    */
   fun updateView(view: View, params: WindowManager.LayoutParams): Boolean {
     try {
@@ -66,7 +67,6 @@ class FloatingManager private constructor(context: Context) {
     } catch (e: Exception) {
       e.printStackTrace()
     }
-
     return false
   }
 }
