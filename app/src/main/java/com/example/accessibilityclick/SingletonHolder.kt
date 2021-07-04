@@ -1,15 +1,11 @@
 package com.example.accessibilityclick
 
 /**
- * @name AccessibilityClick
- * @class name：com.example.accessibilityclick
- * @class describe
- * @anthor 猿小蔡
- * @time 2021/5/29 19:43
- * @change
- * @chang time
+ * SingletonHolder
+ *
+ * @author Jin
+ * @since 2021/7/4
  */
-
 open class SingletonHolder<out T, in A>(creator: (A) -> T) {
   private var creator: ((A) -> T)? = creator
   @Volatile private var instance: T? = null

@@ -1,15 +1,5 @@
 package com.example.accessibilityclick
 
-/**
- * @name AccessibilityClick
- * @class name：com.example.accessibilityclick
- * @class describe
- * @anthor 猿小蔡
- * @time 2021/5/29 19:44
- * @change
- * @chang time
- */
-
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
@@ -23,6 +13,12 @@ import android.view.WindowManager
 import android.widget.FrameLayout
 import androidx.appcompat.widget.AppCompatImageView
 
+/**
+ * FloatingClickView
+ *
+ * @author Jin
+ * @since 2021/7/4
+ */
 class FloatingClickView(private val mContext: Context) : FrameLayout(mContext) {
 
   private lateinit var mWindowManager: FloatingManager
@@ -45,7 +41,7 @@ class FloatingClickView(private val mContext: Context) : FrameLayout(mContext) {
   }
 
   private fun initView() {
-    mView = LayoutInflater.from(context).inflate(R.layout.view_floating_click, null)
+    mView = LayoutInflater.from(context).inflate(R.layout.floating_click_view, null)
     ivIcon = mView.findViewById(R.id.iv_icon)
     mWindowManager = FloatingManager.getInstance(mContext)
     initListener()
@@ -72,7 +68,7 @@ class FloatingClickView(private val mContext: Context) : FrameLayout(mContext) {
       false
     }
 
-    mView.setOnClickListener {
+    mView?.setOnClickListener {
 
       val location = IntArray(2)
       it.getLocationOnScreen(location)

@@ -17,25 +17,31 @@ import androidx.appcompat.widget.AppCompatEditText
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.snackbar.Snackbar
 
+/**
+ * 主界面
+ *
+ * @author Jin
+ * @since 2021/7/4
+ */
 class MainActivity : AppCompatActivity() {
 
   val btn_accessibility: MaterialButton by lazy {
-    findViewById<MaterialButton>(R.id.btn_accessibility)
+    findViewById(R.id.btn_accessibility)
   }
   val btn_floating_window: MaterialButton by lazy {
-    findViewById<MaterialButton>(R.id.btn_floating_window)
+    findViewById(R.id.btn_floating_window)
   }
   val btn_show_window: MaterialButton by lazy {
-    findViewById<MaterialButton>(R.id.btn_show_window)
+    findViewById(R.id.btn_show_window)
   }
   val btn_close_window: MaterialButton by lazy {
-    findViewById<MaterialButton>(R.id.btn_close_window)
+    findViewById(R.id.btn_close_window)
   }
   val btn_test: MaterialButton by lazy {
-    findViewById<MaterialButton>(R.id.btn_test)
+    findViewById(R.id.btn_test)
   }
   val et_interval: AppCompatEditText by lazy {
-    findViewById<AppCompatEditText>(R.id.et_interval)
+    findViewById(R.id.et_interval)
   }
 
   private val TAG = javaClass::class.java.canonicalName
@@ -56,18 +62,17 @@ class MainActivity : AppCompatActivity() {
   }
 
   private fun initListener() {
+    btn_accessibility.setOnLongClickListener {
+      Log.i("TAG", "setOnLongClickListener: ")
+      true
+    }
     btn_accessibility.setOnClickListener {
-
       // 判断服务是否开启
-      if (!OpenAccessibilitySettingHelper.isAccessibilitySettingsOn(
-          this, AutoClickService::class.java.getName()
-        )
-      ) { // 跳转到开启页面
+      if (!OpenAccessibilitySettingHelper.isAccessibilitySettingsOn(this, AutoClickService::class.java.name)) {
         OpenAccessibilitySettingHelper.jumpToSettingPage(this)
-      } else {
-        Toast.makeText(this, "服务已开启", Toast.LENGTH_SHORT).show()
+        return@setOnClickListener
       }
-
+      Log.i("TAG", "开启了无障碍权限")
     }
 
     btn_floating_window.setOnClickListener {
@@ -80,7 +85,6 @@ class MainActivity : AppCompatActivity() {
         Snackbar.make(et_interval, "请输入间隔", Snackbar.LENGTH_SHORT).show()
         return@setOnClickListener
       }
-
       showFloatingWindow()
     }
 
@@ -89,7 +93,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     btn_test.setOnClickListener {
-      Log.d(TAG, "btn_test on click")
+      Log.i(TAG, "btn_test on click")
     }
 
   }
@@ -127,7 +131,8 @@ class MainActivity : AppCompatActivity() {
     startService(intent)
   }
 
-  private fun initNotification() { //注册渠道id
+  private fun initNotification() {
+    // 注册渠道id
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
       val name = NotificationConstants.CHANNEl_NAME
       val descriptionText = NotificationConstants.CHANNEL_DES
@@ -149,8 +154,10 @@ class MainActivity : AppCompatActivity() {
     super.onDestroy()
   }
 
-  //收起输入法
-  fun hideKeyboard() {
+  /**
+   * 收起输入法
+   */
+  private fun hideKeyboard() {
     val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
     if (imm.isActive && currentFocus != null) {
       imm.hideSoftInputFromWindow(currentFocus!!.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)

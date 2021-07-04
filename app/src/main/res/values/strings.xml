@@ -1,4 +1,4 @@
 <resources>
   <string name="app_name">AccessibilityClick</string>
-  <string name="accessibility_desc">这是一个无障碍</string>
+  <string name="accessibility_desc">AccessibilityClick无障碍服务</string>
 </resources>

@@ -6,17 +6,10 @@ import android.content.Intent
 import android.provider.Settings
 
 /**
- * @name AccessibilityClick
- * @class name：com.example.accessibilityclick
- * @class describe
- * @anthor 猿小蔡
- * @time 2021/5/30 17:03
- * @change
- * @chang time
- */
-/**
- * 开启无障碍服务帮助类
- * Created by mazaiting on 2017/8/18.
+ * 无障碍服务帮助类
+ *
+ * @author Jin
+ * @since 2021/7/4
  */
 object OpenAccessibilitySettingHelper {
   /**
@@ -51,4 +44,5 @@ object OpenAccessibilitySettingHelper {
     }
     return false
   }
+
 }

@@ -1,19 +1,15 @@
 package com.example.accessibilityclick
 
-/**
- * @name AccessibilityClick
- * @class name：com.example.accessibilityclick
- * @class describe
- * @anthor 猿小蔡
- * @time 2021/5/29 19:43
- * @change
- * @chang time
- */
-
 import android.content.Context
 import android.view.View
 import android.view.WindowManager
 
+/**
+ * FloatingManager
+ *
+ * @author Jin
+ * @since 2021/7/4
+ */
 class FloatingManager private constructor(context: Context) {
 
   //获得WindowManager对象
